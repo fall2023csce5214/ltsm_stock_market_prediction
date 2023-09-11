@@ -63,13 +63,13 @@ Below is the list of steps for installing and setting up the app. These instruct
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:johnsonlarryl/machine_learning_training.git
+   git clone git@github.com:fall2023csce5214/ltsm_stock_market_prediction.git
    ```
 2. Install project
    ```sh
    poetry install
    conda env create -f environment.yml
-   conda activate learning_algorithm
+   conda activate ltsm_stock_market_prediction
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -81,7 +81,7 @@ Below is the list of steps for installing and setting up the app. These instruct
 
 In order to view or execute the various notebooks run the following command on any of the sub folders in this directory.
 
-Here is an example to launch the Permutations and Combination Notebook.
+Here is an example to launch the LTSM Notebook.
 
 ```sh
 jupyter notebook
