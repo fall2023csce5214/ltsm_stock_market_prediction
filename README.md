@@ -54,8 +54,12 @@ Below is the list things you need to use the software and how to install them.  
    bash Mambaforge-$(uname)-$(uname -m).sh
    ```
 
-4. Restart new terminal session in order to initiate mini conda environmental setup
+5. Restart new terminal session in order to initiate mini conda environmental setup
 
+6. Git LFS
+   ```sh
+   brew install git-lfs
+   ```
 
 ### Installation
 
