@@ -110,7 +110,11 @@ Once inside the
 notebook [use the following link](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html)
 on examples of how to use the notebook.
 
+Here is an example to launch pytest to run the unit test on the command line.  Note, you can also use your favorite IDE if you point it to the python interpreter that your poetry virtual environment is running from.
 
+```sh
+poetry run python -m pytest -k test_appl_ltsm_60_day_model
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

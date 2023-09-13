@@ -99,7 +99,7 @@ class LTSMModel:
         prediction = model.predict(expect_closing_prices_scaled)
         prediction = LTSMModel.SCALER.inverse_transform(prediction)
 
-        return prediction[-1:]
+        return prediction[-1:][0][0]
 
 
 
