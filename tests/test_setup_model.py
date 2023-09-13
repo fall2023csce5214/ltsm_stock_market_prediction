@@ -1,4 +1,3 @@
-import numpy as np
 from ltsm_stock_market_prediction.algo import load_model
 from sklearn.preprocessing import MinMaxScaler
 from typing import List

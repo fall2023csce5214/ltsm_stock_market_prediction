@@ -4,18 +4,13 @@ from keras.models import Sequential
 from keras.layers import Dense, LSTM
 import numpy as np
 import os
-import pandas as pd
 from pandas_datareader import data as pdr
-import scipy
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras import Sequential
-import sys
 import yfinance as yf
 
 
 from ltsm_stock_market_prediction.conf import CONF
-
-COMPANY_NAME = ["APPLE", "GOOGLE", "MICROSOFT", "AMAZON"]
 
 # The tech stocks we'll use for this analysis
 TICKER_SYMBOLS = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
@@ -24,7 +19,6 @@ TICKER_SYMBOLS = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
 def load_model(ticker_symbol: str, lags: int) -> Sequential:
     model_pkl_file_name = CONF[ticker_symbol]["models"][str(lags)]
 
-    # TODO - Come back to a better way to pull off the path more cleanly
     model_pkl_file = os.path.join(os.path.dirname(__file__),
                                   f"model_repo/{model_pkl_file_name}")
 
@@ -33,7 +27,11 @@ def load_model(ticker_symbol: str, lags: int) -> Sequential:
     return model
 
 
-def compile_model(ticker_symbol: str, lags: int, start='2012-01-01', end=datetime.now()) -> None:
+def compile_model(ticker_symbol: str,
+                  lags: int, start='2012-01-01',
+                  end=datetime.now(),
+                  epochs=1,
+                  batch_size=1) -> None:
     # For reading stock data from yahoo
     yf.pdr_override()
 
@@ -79,7 +77,7 @@ def compile_model(ticker_symbol: str, lags: int, start='2012-01-01', end=datetim
     model.compile(optimizer='adam', loss='mean_squared_error')
 
     # Train the model
-    model.fit(x_train, y_train, batch_size=1, epochs=1)
+    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs)
 
     # Save model to disk
     # save the LTSM RNN model as a pickle file
@@ -88,8 +86,6 @@ def compile_model(ticker_symbol: str, lags: int, start='2012-01-01', end=datetim
     model_pkl_file = os.path.join(os.path.dirname(__file__),
                                   f"model_repo/{model_pkl_file_name}")
 
-    # with open(model_pkl_file, 'wb') as file:
-    # dump(model, file)
     dump(model, model_pkl_file)
 
 
