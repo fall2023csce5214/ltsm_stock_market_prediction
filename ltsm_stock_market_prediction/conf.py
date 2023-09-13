@@ -7,7 +7,7 @@ LTSM_MODELS = {"models": {"60":
                }
 
 CONF = {
-    "APPL": LTSM_MODELS,
+    "AAPL": LTSM_MODELS,
 }
 
 
