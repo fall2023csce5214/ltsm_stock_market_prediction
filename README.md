@@ -137,8 +137,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 
 ## License
@@ -147,16 +145,22 @@ Distributed under the GNU License. See `LICENSE.md` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
 
 ## Contact
 
-Your Name - [@realfintorian](https://twitter.com/realfintorian) - johnson.larry.l@fintorian.com
+Jibril Moalim - Jibrilmoalim@gmail.com
+<p/>
+Lakshmi Prasanna Valdas - lakshmiprasannavaldas@my.unt.edu
+<p/>
+Larry Johnson - johnson.larry.l@gmail.com
+<p/>
+Monish Galla - monishgalla@my.unt.edu
+<p/>
+Vamshidhar Reddy Venumula - vamshidharreddyvenumula@my.unt.edu
+<p/>
 
-Project Link: [https://github.com/johnsonlarryl/machine_learning_training](https://github.com/your_username/repo_name)
-References: [Python Machine Learning - Second Edition](https://learning.oreilly.com/library/view/python-machine-learning/9781787125933/)
+Project Link: [https://github.com/fall2023csce5214/ltsm_stock_market_prediction/](https://github.com/fall2023csce5214/ltsm_stock_market_prediction/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
