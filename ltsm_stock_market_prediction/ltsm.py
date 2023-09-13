@@ -19,7 +19,7 @@ class LTSMModel:
     SCALER = MinMaxScaler(feature_range=(0, 1))
 
     @staticmethod
-    def load_model(ticker_symbol: str, lags: int) -> Sequential:
+    def load(ticker_symbol: str, lags: int) -> Sequential:
         model_pkl_file_name = CONF[ticker_symbol]["models"][str(lags)]
 
         model_pkl_file = os.path.join(os.path.dirname(__file__),
@@ -30,11 +30,11 @@ class LTSMModel:
         return model
 
     @staticmethod
-    def compile_model(ticker_symbol: str,
-                      lags: int, start='2012-01-01',
-                      end=datetime.now(),
-                      epochs=1,
-                      batch_size=1) -> None:
+    def compile(ticker_symbol: str,
+                lags: int, start='2012-01-01',
+                end=datetime.now(),
+                epochs=1,
+                batch_size=1) -> None:
         # For reading stock data from yahoo
         yf.pdr_override()
 
@@ -94,7 +94,7 @@ class LTSMModel:
     def predict(ticker_symbol: str, lags: int, closing_prices: np.ndarray) -> float:
         expect_closing_prices_scaled = LTSMModel.SCALER.fit_transform(closing_prices)
 
-        model = LTSMModel.load_model(ticker_symbol=ticker_symbol, lags=lags)
+        model = LTSMModel.load(ticker_symbol=ticker_symbol, lags=lags)
 
         prediction = model.predict(expect_closing_prices_scaled)
         prediction = LTSMModel.SCALER.inverse_transform(prediction)
