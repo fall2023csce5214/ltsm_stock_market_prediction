@@ -16,6 +16,7 @@ from ltsm_stock_market_prediction.conf import CONF
 class LTSMModel:
     # The tech stocks we'll use for this analysis
     TICKER_SYMBOLS = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
+    SCALER = MinMaxScaler(feature_range=(0, 1))
 
     @staticmethod
     def load_model(ticker_symbol: str, lags: int) -> Sequential:
@@ -48,8 +49,7 @@ class LTSMModel:
         # Get the number of rows to train the model on
         training_data_len = int(np.ceil(len(dataset) * .95))
 
-        scaler = MinMaxScaler(feature_range=(0, 1))
-        scaled_data = scaler.fit_transform(dataset)
+        scaled_data = LTSMModel.SCALER.fit_transform(dataset)
 
         # Create the training data set
         # Create the scaled training data set
@@ -92,13 +92,12 @@ class LTSMModel:
 
     @staticmethod
     def predict(ticker_symbol: str, lags: int, closing_prices: np.ndarray) -> float:
-        scaler = MinMaxScaler(feature_range=(0, 1))
-        expect_closing_prices_scaled = scaler.fit_transform(closing_prices)
+        expect_closing_prices_scaled = LTSMModel.SCALER.fit_transform(closing_prices)
 
         model = LTSMModel.load_model(ticker_symbol=ticker_symbol, lags=lags)
 
         prediction = model.predict(expect_closing_prices_scaled)
-        prediction = scaler.inverse_transform(prediction)
+        prediction = LTSMModel.SCALER.inverse_transform(prediction)
 
         return prediction[-1:]
 
