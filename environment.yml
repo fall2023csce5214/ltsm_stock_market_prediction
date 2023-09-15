@@ -1,0 +1,21 @@
+name: ltsm_stock_market_prediction
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - keras
+  - matplotlib
+  - mplcursors
+  - nbconvert
+  - openpyxl
+  - pandas
+  - pandas-datareader
+  - python=3.9.5
+  - jupyter
+  - seaborn
+  - scikit-learn
+  - scipy
+  - tensorflow
+  - yfinance
