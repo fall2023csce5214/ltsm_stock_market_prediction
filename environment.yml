@@ -1,4 +1,4 @@
-name: ltsm_stock_market_prediction
+name: lstm_stock_market_prediction
 
 channels:
   - conda-forge

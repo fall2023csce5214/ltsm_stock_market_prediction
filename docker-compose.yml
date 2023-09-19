@@ -1,36 +1,19 @@
 version: "3"
 
 services:
-  ltsm-web-service:
-#    command: "tail -f /tmp/ltsm.log"
+  lstm-web-service:
     build:
-      context: ./docker/ltsm
+      context: docker/lstm
       dockerfile: Dockerfile
     volumes:
-      - ./docker/ltsm:/ltsm
-      - /ltsm/.local
-      - /ltsm/.pyenv
-      - /ltsm/.cache
-#    depends_on:
-#      - ltsm-database
-#    environment:
-#     DB Credentials Here
-#    ports:
-#      - "XXXX:XXXX"
+      - ./docker/lstm:/lstm
+      - /lstm/.local
+      - /lstm/.pyenv
+      - /lstm/.cache
     networks:
-      - ltsm-net
-#  rework-database:
-#    build:
-#      context: ./docker/database
-#      dockerfile: Dockerfile
-#    volumes:
-#      - ./ltsm_stock_market_prediction:/ltsm    ports:
-#      - "XXXX:XXXX"
-#    networks:
-#      - ltsm-net
-#    environment:
-#     DB Credentials Here
+      - lstm-net
+
 
 networks:
-  ltsm-net:
+  lstm-net:
     driver: bridge

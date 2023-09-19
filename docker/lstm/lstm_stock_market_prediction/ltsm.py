@@ -10,10 +10,10 @@ from tensorflow.keras import Sequential
 import yfinance as yf
 
 
-from ltsm_stock_market_prediction.conf import CONF
+from lstm_stock_market_prediction.conf import CONF
 
 
-class LTSMModel:
+class LSTMModel:
     # The tech stocks we'll use for this analysis
     TICKER_SYMBOLS = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
     SCALER = MinMaxScaler(feature_range=(0, 1))
@@ -49,7 +49,7 @@ class LTSMModel:
         # Get the number of rows to train the model on
         training_data_len = int(np.ceil(len(dataset) * .95))
 
-        scaled_data = LTSMModel.SCALER.fit_transform(dataset)
+        scaled_data = LSTMModel.SCALER.fit_transform(dataset)
 
         # Create the training data set
         # Create the scaled training data set
@@ -92,12 +92,12 @@ class LTSMModel:
 
     @staticmethod
     def predict(ticker_symbol: str, lags: int, closing_prices: np.ndarray) -> float:
-        expect_closing_prices_scaled = LTSMModel.SCALER.fit_transform(closing_prices)
+        expect_closing_prices_scaled = LSTMModel.SCALER.fit_transform(closing_prices)
 
-        model = LTSMModel.load(ticker_symbol=ticker_symbol, lags=lags)
+        model = LSTMModel.load(ticker_symbol=ticker_symbol, lags=lags)
 
         prediction = model.predict(expect_closing_prices_scaled)
-        prediction = LTSMModel.SCALER.inverse_transform(prediction)
+        prediction = LSTMModel.SCALER.inverse_transform(prediction)
 
         return prediction[-1:][0][0]
 

@@ -13,9 +13,9 @@ the strategies that will be used to predict the direction of the stock trend wil
 can indicate a stock price for a specific day. Moreover, we will compare the results between the strategies to see which
 one was more accurate.
 
-| Type                | Sub Type       | Algorithm                             |
-|---------------------|----------------|---------------------------------------|
-| Supervised Learning | RNN              | [LTSM](docker/ltsm/ltsm_stock_market_prediction/) |
+| Type                | Sub Type       | Algorithm                                         |
+|---------------------|----------------|---------------------------------------------------|
+| Supervised Learning | RNN              | [LSTM](docker/lstm/lstm_stock_market_prediction/) |
 
 ### Built With
 
@@ -83,14 +83,14 @@ dependencies or services outside of the prerequisites above.
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:fall2023csce5214/ltsm_stock_market_prediction.git
+   git clone git@github.com:fall2023csce5214/lstm_stock_market_prediction.git
    ```
 2. Install notebook
    conda env create -f environment.yml
-   conda activate ltsm_stock_market_prediction
+   conda activate lstm_stock_market_prediction
 3. Install project
    ```sh
-   cd ./ltsm_stock_market_prediction/docker/ltsm/
+   cd ./lstm_stock_market_prediction/docker/lstm/
    poetry install
    poetry run pip install tensorflow==2.13.0
    ```
@@ -108,7 +108,7 @@ dependencies or services outside of the prerequisites above.
 
 In order to view or execute the various notebooks run the following command on any of the sub folders in this directory.
 
-Here is an example to launch the LTSM Notebook.
+Here is an example to launch the LSTM Notebook.
 
 ```sh
 jupyter notebook
@@ -121,15 +121,15 @@ on examples of how to use the notebook.
 Here is an example to launch pytest to run the unit test on the command line.  Note, you can also use your favorite IDE if you point it to the python interpreter that your poetry virtual environment is running from.
 
 ```sh
-poetry run python -m pytest -k test_appl_ltsm_60_day_model
+poetry run python -m pytest -k test_appl_lstm_60_day_model
 ```
 
 Here is an example to launch docker to run the unit test on the command line.
 
 ```sh
 docker-compose up -d
-docker-compose exec ltsm-web-service bash
-poetry run python -m pytest -k test_appl_ltsm_60_day_model
+docker-compose exec lstm-web-service bash
+poetry run python -m pytest -k test_appl_lstm_60_day_model
 ```
 
 
