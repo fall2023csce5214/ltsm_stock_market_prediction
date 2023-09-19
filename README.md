@@ -15,7 +15,7 @@ one was more accurate.
 
 | Type                | Sub Type       | Algorithm                             |
 |---------------------|----------------|---------------------------------------|
-| Supervised Learning | RNN              | [LTSM](ltsm_stock_market_prediction/) |
+| Supervised Learning | RNN              | [LTSM](docker/ltsm/ltsm_stock_market_prediction/) |
 
 ### Built With
 
@@ -24,6 +24,7 @@ This section lists all major frameworks/libraries used to bootstrap this project
 * [![Python][Python.org]][Python-url]
 * [![Jupyter][Jupyter.org]][Jupyter-url]
 * [![Miniconda][Miniconda.com]][Miniconda-url]
+* [![Docker][Docker.com]][Docker-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -73,6 +74,8 @@ for future users.
    brew install git-lfs
    ```
 
+7. [Docker, including docker-compose](https://docs.docker.com/engine/install/)
+
 ### Installation
 
 Below is the list of steps for installing and setting up the app. These instructions do not rely on any external
@@ -82,14 +85,19 @@ dependencies or services outside of the prerequisites above.
    ```sh
    git clone git@github.com:fall2023csce5214/ltsm_stock_market_prediction.git
    ```
-2. Install project
-   ```sh
-   poetry install
-   poetry run pip install tensorflow==2.13.0
+2. Install notebook
    conda env create -f environment.yml
    conda activate ltsm_stock_market_prediction
+3. Install project
+   ```sh
+   cd ./ltsm_stock_market_prediction/docker/ltsm/
+   poetry install
+   poetry run pip install tensorflow==2.13.0
    ```
-
+4. Build Docker Image (Note, you should be in the same dire)
+   ```sh
+   docker-compose build
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -115,6 +123,15 @@ Here is an example to launch pytest to run the unit test on the command line.  N
 ```sh
 poetry run python -m pytest -k test_appl_ltsm_60_day_model
 ```
+
+Here is an example to launch docker to run the unit test on the command line.
+
+```sh
+docker-compose up -d
+docker-compose exec ltsm-web-service bash
+poetry run python -m pytest -k test_appl_ltsm_60_day_model
+```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -182,3 +199,7 @@ Project Link: [https://github.com/fall2023csce5214/ltsm_stock_market_prediction/
 [Miniconda-url]:https://docs.conda.io/
 
 [Miniconda.com]:https://img.shields.io/badge/conda-342B029.svg?&style=for-the-badge&logo=anaconda&logoColor=white
+
+[Docker-url]:https://www.docker.com/
+
+[Docker.com]:https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
