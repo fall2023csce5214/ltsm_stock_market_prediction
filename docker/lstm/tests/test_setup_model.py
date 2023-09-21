@@ -1,16 +1,16 @@
 from typing import List
 
-from ltsm_stock_market_prediction.ltsm import LTSMModel
+from lstm_stock_market_prediction.ltsm import LSTMModel
 
 
-def test_appl_ltsm_60_day_model(appl_60_day_closing_prices: List[float]):
+def test_appl_lstm_60_day_model(appl_60_day_closing_prices: List[float]):
     assert (len(appl_60_day_closing_prices[0]) > 0)
 
     expect_closing_price = 179.34976
     ticker_symbol = "AAPL"
     lags = 60
 
-    model = LTSMModel()
+    model = LSTMModel()
 
     model.compile(ticker_symbol, 60)
 

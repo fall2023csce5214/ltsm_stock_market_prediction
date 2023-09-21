@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  lstm-web-service:
+    build:
+      context: docker/lstm
+      dockerfile: Dockerfile
+    volumes:
+      - ./docker/lstm:/lstm
+      - /lstm/.local
+      - /lstm/.pyenv
+      - /lstm/.cache
+    networks:
+      - lstm-net
+
+
+networks:
+  lstm-net:
+    driver: bridge

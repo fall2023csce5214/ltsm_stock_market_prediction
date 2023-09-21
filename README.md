@@ -13,9 +13,9 @@ the strategies that will be used to predict the direction of the stock trend wil
 can indicate a stock price for a specific day. Moreover, we will compare the results between the strategies to see which
 one was more accurate.
 
-| Type                | Sub Type       | Algorithm                             |
-|---------------------|----------------|---------------------------------------|
-| Supervised Learning | RNN              | [LTSM](ltsm_stock_market_prediction/) |
+| Type                | Sub Type       | Algorithm                                         |
+|---------------------|----------------|---------------------------------------------------|
+| Supervised Learning | RNN              | [LSTM](docker/lstm/lstm_stock_market_prediction/) |
 
 ### Built With
 
@@ -24,6 +24,7 @@ This section lists all major frameworks/libraries used to bootstrap this project
 * [![Python][Python.org]][Python-url]
 * [![Jupyter][Jupyter.org]][Jupyter-url]
 * [![Miniconda][Miniconda.com]][Miniconda-url]
+* [![Docker][Docker.com]][Docker-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -73,6 +74,8 @@ for future users.
    brew install git-lfs
    ```
 
+7. [Docker, including docker-compose](https://docs.docker.com/engine/install/)
+
 ### Installation
 
 Below is the list of steps for installing and setting up the app. These instructions do not rely on any external
@@ -80,16 +83,21 @@ dependencies or services outside of the prerequisites above.
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:fall2023csce5214/ltsm_stock_market_prediction.git
+   git clone git@github.com:fall2023csce5214/lstm_stock_market_prediction.git
    ```
-2. Install project
+2. Install notebook
+   conda env create -f environment.yml
+   conda activate lstm_stock_market_prediction
+3. Install project
    ```sh
+   cd ./lstm_stock_market_prediction/docker/lstm/
    poetry install
    poetry run pip install tensorflow==2.13.0
-   conda env create -f environment.yml
-   conda activate ltsm_stock_market_prediction
    ```
-
+4. Build Docker Image (Note, you should be in the same dire)
+   ```sh
+   docker-compose build
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -100,7 +108,7 @@ dependencies or services outside of the prerequisites above.
 
 In order to view or execute the various notebooks run the following command on any of the sub folders in this directory.
 
-Here is an example to launch the LTSM Notebook.
+Here is an example to launch the LSTM Notebook.
 
 ```sh
 jupyter notebook
@@ -113,8 +121,17 @@ on examples of how to use the notebook.
 Here is an example to launch pytest to run the unit test on the command line.  Note, you can also use your favorite IDE if you point it to the python interpreter that your poetry virtual environment is running from.
 
 ```sh
-poetry run python -m pytest -k test_appl_ltsm_60_day_model
+poetry run python -m pytest -k test_appl_lstm_60_day_model
 ```
+
+Here is an example to launch docker to run the unit test on the command line.
+
+```sh
+docker-compose up -d
+docker-compose exec lstm-web-service bash
+poetry run python -m pytest -k test_appl_lstm_60_day_model
+```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -182,3 +199,7 @@ Project Link: [https://github.com/fall2023csce5214/ltsm_stock_market_prediction/
 [Miniconda-url]:https://docs.conda.io/
 
 [Miniconda.com]:https://img.shields.io/badge/conda-342B029.svg?&style=for-the-badge&logo=anaconda&logoColor=white
+
+[Docker-url]:https://www.docker.com/
+
+[Docker.com]:https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
