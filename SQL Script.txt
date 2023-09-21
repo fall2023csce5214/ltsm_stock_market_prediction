@@ -1,0 +1,14 @@
+
+create schema StockAnalysis;
+Go
+
+create table StockAnalysis.stocks(
+  date        date,
+ open         numeric(3,7),
+ High        numeric(3,7),
+ Low         numeric(3,7),
+ Close      numeric(3,7),
+ "Adj Close"   decimal(12,5),
+ Volume     bigint,
+ Company_name    varchar(50)
+);
