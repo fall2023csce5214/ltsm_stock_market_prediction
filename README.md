@@ -132,6 +132,13 @@ docker-compose exec lstm-web-service bash
 poetry run python -m pytest -k test_appl_lstm_60_day_model
 ```
 
+Here is an example to launch docker to populate the database.
+
+```sh
+docker-compose up -d
+docker-compose exec lstm-web-service bash
+poetry run python -m lstm_stock_market_prediction.dao
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

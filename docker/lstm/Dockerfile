@@ -37,10 +37,22 @@ RUN pyenv install 3.9.5
 RUN pyenv global 3.9.5
 RUN eval "$(/pyenv/bin/pyenv init -)"
 
+# Install pyscopg
+RUN apt install postgresql -y
+RUN apt install libpq-dev -y
+
 # Install poetry
 RUN curl -sSL https://install.python-poetry.org | python -
 ENV PATH="/lstm/.local/bin:$PATH"
 RUN poetry install
 RUN poetry run pip install tensorflow==2.13.0
+
+# Application environment variables
+ENV DB_NAME postgres
+ENV DB_USER postgres
+ENV DB_PASSWORD mysecretpassword
+ENV DB_HOST host.docker.internal
+ENV DB_PORT 5432
+ENV PYTHONPATH=/lstm
 
 ENTRYPOINT ["sh", "/lstm/docker-entrypoint.sh"]
