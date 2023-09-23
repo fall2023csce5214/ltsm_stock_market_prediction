@@ -10,4 +10,6 @@ CONF = {
     "AAPL": LTSM_MODELS,
 }
 
+TICKER_SYMBOLS = ["GOOGL", "AAPL", "MSFT", "AMZN", "TSLA", "NVDA", "GM", "AMD", "INTC", "PFE"]
+
 
