@@ -10,9 +10,31 @@ services:
       - /lstm/.local
       - /lstm/.pyenv
       - /lstm/.cache
+    depends_on:
+      - lstm-database
+    networks:
+      - lstm-net
+  lstm-database:
+    build:
+      context: docker/database
+      dockerfile: Dockerfile
+    environment:
+       POSTGRES_PASSWORD: "mysecretpassword"
+    command:
+      - postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker/database:/database
     networks:
       - lstm-net
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 networks:
   lstm-net:
