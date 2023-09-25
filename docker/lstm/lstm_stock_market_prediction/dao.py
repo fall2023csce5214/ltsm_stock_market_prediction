@@ -1,67 +1,52 @@
-from datetime import datetime
 import logging
 import os
-import pandas as pd
 from pandas import DataFrame
+import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy import text
-import yfinance as yf
-
-from lstm_stock_market_prediction.conf import TICKER_SYMBOLS
 
 
 logger = logging.getLogger(__name__)
-DB_ERROR_MESSAGE = "Unable to connect to the stocks database."
 DB_CONNECTION_STRING = f"postgresql://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}/{os.environ['DB_NAME']}"
 
 
-def run():
-    try:
-        stocks = extract()
-        load(stocks)
-    except Exception as e:
-        logger.warning("Unable to connect to the stocks database.", exc_info=True)
-        raise e
+class StockDAO:
+    @staticmethod
+    def load_stocks(df: DataFrame):
+        engine = StockDAO.get_engine()
 
+        with engine.begin() as conn:
+            logger.debug("We are connected to the stocks database.")
 
-def extract(ticker_symbols=TICKER_SYMBOLS,
-            start='2012-01-01',
-            end=datetime.now()) -> DataFrame:
-    stocks = pd.concat([yf.download(ticker,
-                                    group_by="Ticker",
-                                    start=start,
-                                    end=end).assign(ticker=ticker) for ticker in ticker_symbols],
-                       ignore_index=False)
+            conn.execute(text("delete from stock_analysis.stock"))
 
-    stocks['trading_date'] = stocks.index
+            logger.debug("Refreshed database.")
 
-    stocks.rename(columns={"Open": "open_price",
-                           "High": "high_price",
-                           "Low": "low_price",
-                           "Close": "close_price",
-                           "Adj Close": "adj_close_price",
-                           "Volume": "volume"},
-                           inplace=True)
+            df.to_sql("stock",
+                      schema="stock_analysis",
+                      con=conn,
+                      if_exists='append',
+                      index=False)
 
-    return stocks
+    @staticmethod
+    def get_closing_prices(ticker_symbol: str,
+                           start_date: str,
+                           end_date: str) -> DataFrame:
+        engine = StockDAO.get_engine()
 
+        sql = text("""
+            select close_price 
+            from stock_analysis.stock 
+            where trading_date >= :start_date and trading_date <= :end_date and ticker = :ticker
+        """)
 
-def load(df: DataFrame) -> None:
-    engine = create_engine(DB_CONNECTION_STRING)
+        params = {"ticker": ticker_symbol,
+                  "start_date": start_date,
+                  "end_date": end_date}
 
-    with engine.begin() as conn:
-        logger.debug("We are connected to the stocks database.")
+        with engine.begin() as conn:
+            return pd.read_sql_query(sql=sql, params=params, con=conn)
 
-        conn.execute(text("delete from stock_analysis.stock"))
-
-        logger.debug("Refreshed database.")
-
-        df.to_sql("stock",
-                  schema="stock_analysis",
-                  con=conn,
-                  if_exists='append',
-                  index=False)
-
-
-if __name__ == "__main__":
-    run()
+    @staticmethod
+    def get_engine():
+        return create_engine(DB_CONNECTION_STRING)

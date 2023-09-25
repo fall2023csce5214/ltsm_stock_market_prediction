@@ -10,10 +10,13 @@ services:
       - /lstm/.local
       - /lstm/.pyenv
       - /lstm/.cache
+    ports:
+      - 10000:10000
     depends_on:
       - lstm-database
     networks:
       - lstm-net
+
   lstm-database:
     build:
       context: docker/database

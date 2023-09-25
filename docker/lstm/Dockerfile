@@ -53,6 +53,7 @@ ENV DB_USER postgres
 ENV DB_PASSWORD mysecretpassword
 ENV DB_HOST host.docker.internal
 ENV DB_PORT 5432
-ENV PYTHONPATH=/lstm
+ENV PYTHONPATH=/lstm:/tests
+ENV WEB_SERVICE_PORT=10000
 
 ENTRYPOINT ["sh", "/lstm/docker-entrypoint.sh"]
