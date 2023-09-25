@@ -1,48 +1,37 @@
-from datetime import datetime
 from joblib import dump, load
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
 import numpy as np
 import os
-from pandas_datareader import data as pdr
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras import Sequential
-import yfinance as yf
 
-
-from lstm_stock_market_prediction.conf import CONF
+from lstm_stock_market_prediction.conf import MODEL_DIR_PREFIX
+from lstm_stock_market_prediction.dao import StockDAO
 
 
 class LSTMModel:
-    # The tech stocks we'll use for this analysis
-    TICKER_SYMBOLS = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
     SCALER = MinMaxScaler(feature_range=(0, 1))
 
     @staticmethod
     def load(ticker_symbol: str, lags: int) -> Sequential:
-        model_pkl_file_name = CONF[ticker_symbol]["models"][str(lags)]
-
-        model_pkl_file = os.path.join(os.path.dirname(__file__),
-                                      f"model_repo/{model_pkl_file_name}")
-
+        model_pkl_file = LSTMModel.get_pkl_file_name(ticker_symbol, lags)
         model = load(model_pkl_file)
 
         return model
 
     @staticmethod
     def compile(ticker_symbol: str,
-                lags: int, start='2012-01-01',
-                end=datetime.now(),
+                lags: int,
+                start: str,
+                end: str,
                 epochs=1,
                 batch_size=1) -> None:
-        # For reading stock data from yahoo
-        yf.pdr_override()
-
         # Get the stock quote
-        df = pdr.get_data_yahoo(ticker_symbol, start=start, end=end)
+        df = StockDAO.get_closing_prices(ticker_symbol, start, end)
 
         # Create a new dataframe with only the 'Close column
-        data = df.filter(['Close'])
+        data = df.filter(['close_price'])
         # Convert the dataframe to a numpy array
         dataset = data.values
 
@@ -83,23 +72,25 @@ class LSTMModel:
 
         # Save model to disk
         # save the LTSM RNN model as a pickle file
-        model_pkl_file_name = CONF[ticker_symbol]["models"][str(lags)]
-
-        model_pkl_file = os.path.join(os.path.dirname(__file__),
-                                      f"model_repo/{model_pkl_file_name}")
+        model_pkl_file = LSTMModel.get_pkl_file_name(ticker_symbol, lags)
 
         dump(model, model_pkl_file)
 
     @staticmethod
     def predict(ticker_symbol: str, lags: int, closing_prices: np.ndarray) -> float:
-        expect_closing_prices_scaled = LSTMModel.SCALER.fit_transform(closing_prices)
+        closing_prices_scaled = LSTMModel.SCALER.fit_transform(closing_prices)
 
         model = LSTMModel.load(ticker_symbol=ticker_symbol, lags=lags)
 
-        prediction = model.predict(expect_closing_prices_scaled)
+        prediction = model.predict(closing_prices_scaled)
         prediction = LSTMModel.SCALER.inverse_transform(prediction)
 
-        return prediction[-1:][0][0]
+        return round(prediction[-1:][0][0], 2)
+
+    @staticmethod
+    def get_pkl_file_name(ticker_symbol: str, lags: int):
+        return os.path.join(os.path.dirname(__file__),
+                            f"{MODEL_DIR_PREFIX}/{ticker_symbol}_ltsm_{lags}_day_model.pkl")
 
 
 

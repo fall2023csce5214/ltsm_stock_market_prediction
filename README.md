@@ -132,12 +132,31 @@ docker-compose exec lstm-web-service bash
 poetry run python -m pytest -k test_appl_lstm_60_day_model
 ```
 
-Here is an example to launch docker to populate the database.
-
+Here is an example to launch docker to populate the database and launch the web service.
 ```sh
 docker-compose up -d
-docker-compose exec lstm-web-service bash
-poetry run python -m lstm_stock_market_prediction.dao
+docker-compose logs -f lstm-web-service
+```
+
+Then hit the following URL to test the web service.  Note, wait until the web service starts.  You will see a message like the following:
+```
+INFO:     Will watch for changes in these directories: ['/lstm']
+INFO:     Uvicorn running on http://0.0.0.0:10000 (Press CTRL+C to quit)
+INFO:     Started reloader process [142] using statreload
+INFO:     Started server process [146]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
+
+http://localhost:10000/predict?ticker_symbol=AAPL&date=2023-09-22
+
+The response would look something like the following:
+```json
+{
+  "trading_date": "2023-09-22",
+  "closing_price": 177.7
+}
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

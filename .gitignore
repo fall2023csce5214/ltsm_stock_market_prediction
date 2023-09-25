@@ -166,3 +166,5 @@ cython_debug/
 .bash_history
 
 .pdbhistory
+
+wget-log*
