@@ -161,10 +161,6 @@ The response would look something like the following:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- DESIGN -->
-
-## TBD
-
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -183,6 +179,12 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## Acknowledgements
+
+[Stock Market Analysis + Prediction using LSTM](https://www.kaggle.com/code/faressayah/stock-market-analysis-prediction-using-lstm/notebook)
 
 <!-- LICENSE -->
 
