@@ -198,16 +198,16 @@ Distributed under the GNU License. See `LICENSE.md` for more information.
 
 ## Contact
 
-Jibril Moalim - Jibrilmoalim@gmail.com
-<p/>
-Lakshmi Prasanna Valdas - lakshmiprasannavaldas@my.unt.edu
-<p/>
-Larry Johnson - johnson.larry.l@gmail.com
-<p/>
-Monish Galla - monishgalla@my.unt.edu
-<p/>
-Vamshidhar Reddy Venumula - vamshidharreddyvenumula@my.unt.edu
-<p/>
+[Jibril Moalim](mailto:Jibrilmoalim@gmail.com)
+<br>
+[Lakshmi Prasanna Valdas](mailto:lakshmiprasannavaldas@my.unt.edu)
+<br>
+[Larry Johnson](mailto:johnson.larry.l@gmail.com)
+<br>
+[Monish Galla](mailto:monishgalla@my.unt.edu)
+<br>
+[Vamshidhar Reddy Venumula](vamshidharreddyvenumula@my.unt.edu)
+<br>
 
 Project Link: [https://github.com/fall2023csce5214/ltsm_stock_market_prediction/](https://github.com/fall2023csce5214/ltsm_stock_market_prediction/)
 
