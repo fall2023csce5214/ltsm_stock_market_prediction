@@ -161,28 +161,11 @@ The response would look something like the following:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- DESIGN -->
+<!-- ACKNOWLEDGEMENTS -->
 
-## TBD
+## Acknowledgements
 
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
-contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
-simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+[Stock Market Analysis + Prediction using LSTM](https://www.kaggle.com/code/faressayah/stock-market-analysis-prediction-using-lstm/notebook)
 
 <!-- LICENSE -->
 
@@ -196,16 +179,16 @@ Distributed under the GNU License. See `LICENSE.md` for more information.
 
 ## Contact
 
-Jibril Moalim - Jibrilmoalim@gmail.com
-<p/>
-Lakshmi Prasanna Valdas - lakshmiprasannavaldas@my.unt.edu
-<p/>
-Larry Johnson - johnson.larry.l@gmail.com
-<p/>
-Monish Galla - monishgalla@my.unt.edu
-<p/>
-Vamshidhar Reddy Venumula - vamshidharreddyvenumula@my.unt.edu
-<p/>
+[Jibril Moalim](mailto:Jibrilmoalim@gmail.com)
+<br>
+[Lakshmi Prasanna Valdas](mailto:lakshmiprasannavaldas@my.unt.edu)
+<br>
+[Larry Johnson](mailto:johnson.larry.l@gmail.com)
+<br>
+[Monish Galla](mailto:monishgalla@my.unt.edu)
+<br>
+[Vamshidhar Reddy Venumula](vamshidharreddyvenumula@my.unt.edu)
+<br>
 
 Project Link: [https://github.com/fall2023csce5214/ltsm_stock_market_prediction/](https://github.com/fall2023csce5214/ltsm_stock_market_prediction/)
 

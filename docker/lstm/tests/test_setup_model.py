@@ -12,10 +12,7 @@ def test_appl_lstm_60_day_model(appl_60_day_closing_prices: List[float]):
 
     model = LSTMModel()
 
-    # model.compile(ticker_symbol, 60)
-
-    import ipdb; ipdb.set_trace()
-
+    model.compile(ticker_symbol, 60)
 
     # Assert that predicted closing price is within $2
     actual_closing_price = model.predict(ticker_symbol, lags, appl_60_day_closing_prices[0])
