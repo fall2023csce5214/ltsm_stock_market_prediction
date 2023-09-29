@@ -155,11 +155,6 @@ The response would look something like the following:
 
 [Stock Market Analysis + Prediction using LSTM](https://www.kaggle.com/code/faressayah/stock-market-analysis-prediction-using-lstm/notebook)
 
-<!-- LICENSE -->
-
-## License
-
-Distributed under the GNU License. See `LICENSE.md` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
