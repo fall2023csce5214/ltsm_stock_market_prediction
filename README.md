@@ -88,13 +88,7 @@ dependencies or services outside of the prerequisites above.
 2. Install notebook
    conda env create -f environment.yml
    conda activate lstm_stock_market_prediction
-3. Install project
-   ```sh
-   cd ./lstm_stock_market_prediction/docker/lstm/
-   poetry install
-   poetry run pip install tensorflow==2.13.0
-   ```
-4. Build Docker Image (Note, you should be in the same dire)
+3. Build Docker Image (Note, you should be in the same dire)
    ```sh
    docker-compose build
    ```
@@ -117,12 +111,6 @@ jupyter notebook
 Once inside the
 notebook [use the following link](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html)
 on examples of how to use the notebook.
-
-Here is an example to launch pytest to run the unit test on the command line.  Note, you can also use your favorite IDE if you point it to the python interpreter that your poetry virtual environment is running from.
-
-```sh
-poetry run python -m pytest -k test_appl_lstm_60_day_model
-```
 
 Here is an example to launch docker to run the unit test on the command line.
 
