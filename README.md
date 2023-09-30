@@ -86,9 +86,11 @@ dependencies or services outside of the prerequisites above.
    git clone git@github.com:fall2023csce5214/lstm_stock_market_prediction.git
    ```
 2. Install notebook
+   ```sh
    conda env create -f environment.yml
    conda activate lstm_stock_market_prediction
-3. Build Docker Image (Note, you should be in the same dire)
+   ```
+4. Build Docker Image (Note, you should be in the same dire)
    ```sh
    docker-compose build
    ```
